@@ -14,7 +14,7 @@ namespace TrabalhoFinal
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            XmlReader reader = XmlReader.Create("http://www.myapifilms.com/imdb/top?format=XML&start=1&end=250&data=F");
+            XmlReader reader = XmlReader.Create("http://www.myapifilms.com/imdb/top?format=XML&start=1&end=100&data=F");
             XmlDocument doc = new XmlDocument();
             doc.Load(reader);
             reader.Close();
@@ -36,7 +36,7 @@ namespace TrabalhoFinal
                 news.InnerHtml += ""+
                 
                 "<li>" +
-                    "<a href = \"/filme/"+ i.Attributes["idIMDB"].Value + "\" >" +
+                    "<a href = \"/Movie?ID=" + i.Attributes["idIMDB"].Value + "\" >" +
                         "<div class=\"thumb\">" +
                             "<div class=\"img\" style=\"background-image: url('"+i.Attributes["urlPoster"].Value + "');\"></div>"+
                         "</div>" + 
