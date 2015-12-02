@@ -9,7 +9,7 @@
     <div runat="server" class="row">
         <div class="col-lg-8">
             <h3>Movie Info</h3>
-            <asp:DetailsView CssClass="table table-bordered" ID="DetailsView1" runat="server" DataSourceID="XmlDataSource1" AutoGenerateRows="False" >
+            <asp:DetailsView CssClass="table" GridLines="None" ID="DetailsView1" runat="server" DataSourceID="XmlDataSource1" AutoGenerateRows="False" >
                 <Fields>
                     <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" />
                     <asp:BoundField DataField="year" HeaderText="Year" SortExpression="year" />
@@ -25,6 +25,7 @@
                     <asp:BoundField DataField="awards" HeaderText="Awards" SortExpression="awards" /> 
                     <asp:BoundField DataField="metascore" HeaderText="Metascore" SortExpression="metascore" /> 
                     <asp:BoundField DataField="imdbRating" HeaderText="IMDB Rating" SortExpression="imdbRating" /> 
+                    <asp:BoundField DataField="imdbID" HeaderText="IMDB ID" SortExpression="imdbID" /> 
 
                 </Fields>
             </asp:DetailsView>
@@ -33,7 +34,15 @@
             <h3>Poster</h3>
             <div id="image" runat="server">
             </div>
+            <p>
+
+            </p>
+            <div>
+                    <asp:Button CssClass="button" ID="Button1" runat="server" Text="Purchase" Width="300"/>
+            </div>
         </div>
     </div> 
 
+
+<iframe width="720" height="405" src="//v.traileraddict.com/8874" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no" frameborder="0"></iframe> <p><a href="http://www.traileraddict.com/curious-case-benjamin-button/visual-effect-4">Visual Effects 4</a> for <a href="http://www.traileraddict.com/curious-case-benjamin-button">The Curious Case of Benjamin Button</a> on <a href="http://www.traileraddict.com">TrailerAddict</a>.</p>
 </asp:Content>

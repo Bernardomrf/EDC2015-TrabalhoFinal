@@ -64,3 +64,7 @@
 \\Mac\Home\Desktop\Universidade\EDC2015-TrabalhoFinal\TrabalhoFinal\TrabalhoFinal\obj\Debug\TrabalhoFinal.csprojResolveAssemblyReference.cache
 \\Mac\Home\Desktop\Universidade\EDC2015-TrabalhoFinal\TrabalhoFinal\TrabalhoFinal\obj\Debug\TrabalhoFinal.dll
 \\Mac\Home\Desktop\Universidade\EDC2015-TrabalhoFinal\TrabalhoFinal\TrabalhoFinal\obj\Debug\TrabalhoFinal.pdb
+\\Mac\Home\Desktop\Universidade\EDC2015-TrabalhoFinal\TrabalhoFinal\TrabalhoFinal\obj\Debug\TrabalhoFinal.Migrations.InitialCreate.resources
+\\Mac\Home\Desktop\Universidade\EDC2015-TrabalhoFinal\TrabalhoFinal\TrabalhoFinal\obj\Debug\TrabalhoFinal.csproj.GenerateResource.Cache
+\\Mac\Home\Desktop\Universidade\EDC2015-TrabalhoFinal\TrabalhoFinal\TrabalhoFinal\obj\Debug\TrabalhoFinal.Migrations.FullName.resources
+\\Mac\Home\Desktop\Universidade\EDC2015-TrabalhoFinal\TrabalhoFinal\TrabalhoFinal\obj\Debug\TrabalhoFinal.Migrations.BirthDate.resources

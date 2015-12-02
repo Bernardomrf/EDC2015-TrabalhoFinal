@@ -51,6 +51,7 @@ namespace TrabalhoFinal
                 "</li>";
             }
             news.InnerHtml += "</ul>";
+
         }
     }
 }

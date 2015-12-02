@@ -13,6 +13,7 @@ namespace TrabalhoFinal
         protected void Page_Load(object sender, EventArgs e)
         {
             string url = Request.QueryString["ID"];
+            Button1.PostBackUrl= "~/Personal/ConfirmPurchases?ID=" + url;
             string apiLink = "http://www.omdbapi.com/?i=" + url + "&plot=full&r=xml";
             if (url == null)
             {
@@ -42,5 +43,6 @@ namespace TrabalhoFinal
             //XmlDataSource1.XPath = "/channel";
 
         }
+
     }
 }
