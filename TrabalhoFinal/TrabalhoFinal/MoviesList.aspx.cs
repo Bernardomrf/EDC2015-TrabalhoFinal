@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
@@ -14,41 +16,86 @@ namespace TrabalhoFinal
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            XmlReader reader = XmlReader.Create("http://www.myapifilms.com/imdb/top?format=XML&start=1&end=100&data=F");
-            XmlDocument doc = new XmlDocument();
-            doc.Load(reader);
-            reader.Close();
-
-
-            XmlDataSource1.Data = doc.OuterXml;
-            XmlDataSource1.DataBind();
-            XmlDataSource1.XPath = "/channel";
-
-            XmlDocument xdoc2 = XmlDataSource1.GetXmlDocument();
-            XmlNodeList noticias = xdoc2.SelectNodes("//movie");
-            news.InnerHtml = "<ul>";
-            
-
-            foreach (XmlNode i in noticias)
+            try
             {
-                Debug.WriteLine(i.Attributes["title"].Value);
+                String sql = "SELECT * FROM dbo.Movies ORDER BY year DESC";
+                SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+                SqlCommand command = new SqlCommand(sql, connection);
 
-                news.InnerHtml += ""+
-                
-                "<li>" +
-                    "<a href = \"/Movie?ID=" + i.Attributes["idIMDB"].Value + "\" >" +
-                        "<div class=\"thumb\">" +
-                            "<div class=\"img\" style=\"background-image: url('"+i.Attributes["urlPoster"].Value + "');\"></div>"+
-                        "</div>" + 
-                        "<div class=\"info\">"+
-                            "<div class=\"title\">"+ i.Attributes["title"].Value + "</div>" + 
-                            "<div class=\"infos\">" +
-                                "<div class=\"year\">" + i.Attributes["year"].Value + "</div>" +
-                                "<div class=\"imdb\">TMDB: " + i.Attributes["rating"].Value + "</div>" +
-                            "</div>"+
-                        "</div>"+
-                    "</a>"+
-                "</li>";
+                DataTable table = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(table);
+                connection.Open();
+                news.InnerHtml = "<ul>";
+                foreach (DataRow row in table.Rows)
+                {
+                    Debug.WriteLine(row["title"].ToString());
+
+                    news.InnerHtml += "" +
+
+                    "<li>" +
+                        "<a href = \"/Movie?ID=" + row["id"].ToString() + "\" >" +
+                            "<div class=\"thumb\">" +
+                                "<div class=\"img\" style=\"background-image: url('" + row["poster"].ToString() + "');\"></div>" +
+                            "</div>" +
+                            "<div class=\"info\">" +
+                                "<div class=\"title\">" + row["title"].ToString() + "</div>" +
+                                "<div class=\"infos\">" +
+                                    "<div class=\"year\">" + row["year"].ToString() + "</div>" +
+                                    "<div class=\"imdb\">TMDB: " + row["rating"].ToString() + "</div>" +
+                                "</div>" +
+                            "</div>" +
+                        "</a>" +
+                    "</li>";
+                    
+                }
+                connection.Close();
+            }
+            catch {
+            }
+            news.InnerHtml += "</ul>";
+
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                String sql = "SELECT * FROM dbo.Movies ORDER BY "+ DropDownList1.SelectedValue.ToLower() + " DESC";
+                SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                DataTable table = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(table);
+                connection.Open();
+                news.InnerHtml = "<ul>";
+                foreach (DataRow row in table.Rows)
+                {
+                    Debug.WriteLine(row["title"].ToString());
+
+                    news.InnerHtml += "" +
+
+                    "<li>" +
+                        "<a href = \"/Movie?ID=" + row["id"].ToString() + "\" >" +
+                            "<div class=\"thumb\">" +
+                                "<div class=\"img\" style=\"background-image: url('" + row["poster"].ToString() + "');\"></div>" +
+                            "</div>" +
+                            "<div class=\"info\">" +
+                                "<div class=\"title\">" + row["title"].ToString() + "</div>" +
+                                "<div class=\"infos\">" +
+                                    "<div class=\"year\">" + row["year"].ToString() + "</div>" +
+                                    "<div class=\"imdb\">TMDB: " + row["rating"].ToString() + "</div>" +
+                                "</div>" +
+                            "</div>" +
+                        "</a>" +
+                    "</li>";
+
+                }
+                connection.Close();
+            }
+            catch
+            {
             }
             news.InnerHtml += "</ul>";
 
