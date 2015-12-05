@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Movie.aspx.cs" Inherits="TrabalhoFinal.Movie" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h1 id="movieName" runat="server"><i class="fa fa-video-camera"></i> </h1>
+    <h1 id="movieName" runat="server"></h1>
     <hr/>
     
     <asp:XmlDataSource ID="XmlDataSource1" runat="server" EnableCaching="false"></asp:XmlDataSource>
@@ -42,6 +42,26 @@
             </div>
         </div>
     </div> 
+     <hr/>
+
+    <div class="container">
+        <div class="col-lg-12 col-sm-6 text-left">
+            <div class="well">
+                <h4>Review this movie</h4>
+                <div class="input-group">
+                    <input type="text" id="userComment" class="form-control input-sm chat-input" runat="server" placeholder="Write your review here..." />
+	                <span class="input-group-btn"> 
+                        <asp:Button CssClass="btn btn-primary btn-sm" ID="Button2" runat="server" Text="Add Review" OnClick="Button2_Click" />  
+                    </span>
+                </div>
+                
+                <ul id="sortable" runat="server" class="list-unstyled ui-sortable">
+                    
+                </ul>
+
+       </div>    
+     </div>
+</div>
 
 
 </asp:Content>

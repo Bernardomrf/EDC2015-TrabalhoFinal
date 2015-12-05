@@ -35,25 +35,42 @@ namespace TrabalhoFinal.Personal
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            if (User.Identity.IsAuthenticated)
-                Debug.WriteLine(User.Identity.Name);
+            String sql = "SELECT CASE WHEN EXISTS(SELECT id, email FROM MoviesBS.dbo.Purchases WHERE id = '"+ Request.QueryString["ID"] + "' and email = '"+ User.Identity.Name + "') THEN 'TRUE' ELSE 'FALSE' END AS[Exists] FROM MoviesBS.dbo.Purchases";
+            SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+            SqlCommand command = new SqlCommand(sql, connection);
 
-            String query = "INSERT INTO dbo.Purchases (id,email) VALUES (@id,@email)";
-            using (SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False"))
-            using (SqlCommand command = new SqlCommand(query, connection))
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(table);
+            connection.Open();
+            connection.Close();
+            Debug.WriteLine(table.Rows[0]["Exists"].ToString());
+
+            if (table.Rows[0]["Exists"].ToString() == "FALSE")
             {
-                //a shorter syntax to adding parameters
-                command.Parameters.Add("@id", SqlDbType.NChar).Value = Request.QueryString["ID"];
+                sql = "INSERT INTO dbo.Purchases (id,email) VALUES (@id,@email)";
+                using (connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False"))
+                using (command = new SqlCommand(sql, connection))
+                {
+                    //a shorter syntax to adding parameters
+                    command.Parameters.Add("@id", SqlDbType.NChar).Value = Request.QueryString["ID"];
 
-                command.Parameters.Add("@email", SqlDbType.NChar).Value = User.Identity.Name;
+                    command.Parameters.Add("@email", SqlDbType.NChar).Value = User.Identity.Name;
 
-                //make sure you open and close(after executing) the connection
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                    //make sure you open and close(after executing) the connection
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                Response.Redirect("~/Personal/MyArea");
+            }
+            else {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: You already have this movie')", true);
+
             }
 
-            Response.Redirect("~/Personal/MyArea");
+
         }
     }
 }
