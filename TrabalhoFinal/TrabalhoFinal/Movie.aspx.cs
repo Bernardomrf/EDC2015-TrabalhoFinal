@@ -56,7 +56,7 @@ namespace TrabalhoFinal
                 foreach (DataRow row in table.Rows)
                 {
 
-                    sortable.InnerHtml = "<hr/>" +
+                    sortable.InnerHtml += "<hr/>" +
                     "<strong class=\"pull-left primary-font\">" + row["email"].ToString().Substring(0, row["email"].ToString().IndexOf('@')) + "</strong>" +
                     "<small class=\"pull-right text-muted\">" +
                        "<span class=\"glyphicon glyphicon-time\"></span>" + row["commentDate"].ToString() + "</small>" +
