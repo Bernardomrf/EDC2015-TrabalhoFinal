@@ -2,13 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h1><i class="fa fa-film"></i> Movies List</h1>
-    <p>
+    <!--<p>
         <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
             <asp:ListItem>Year</asp:ListItem>
             <asp:ListItem>Rating</asp:ListItem>
             <asp:ListItem>Title</asp:ListItem>
         </asp:DropDownList>
-    </p>
+    </p> -->
     <hr />
 
     <div id="wrapper">

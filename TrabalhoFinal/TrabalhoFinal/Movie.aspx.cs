@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,6 +17,16 @@ namespace TrabalhoFinal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            var jsonString  = new WebClient().DownloadString("http://api.myapifilms.com/trailerAddict/taapi?idIMDB=tt3659388&token=244f0fe9-66e4-41f4-8d7c-f4b1dcf8b39d&featured=&count=1&credit=&format=json"); ;
+
+            String[] all = jsonString.Split(new Char[] { ',', ':' });
+            int indeex = Array.IndexOf(all, "\"embed\"");
+            Debug.WriteLine(indeex);
+            foreach (String a in all)
+                Debug.WriteLine(a);
+
+            Debug.WriteLine(all[indeex+1]);
             string url = Request.QueryString["ID"];
             Button1.PostBackUrl= "~/Personal/ConfirmPurchases?ID=" + url;
             string apiLink = "http://www.omdbapi.com/?i=" + url + "&plot=full&r=xml";
@@ -59,7 +71,7 @@ namespace TrabalhoFinal
                     sortable.InnerHtml += "<hr/>" +
                     "<strong class=\"pull-left primary-font\">" + row["email"].ToString().Substring(0, row["email"].ToString().IndexOf('@')) + "</strong>" +
                     "<small class=\"pull-right text-muted\">" +
-                       "<span class=\"glyphicon glyphicon-time\"></span>" + row["commentDate"].ToString() + "</small>" +
+                       "<span class=\"glyphicon glyphicon-time\"></span>" +" "+ row["commentDate"].ToString() + "</small>" +
                     "</br>" +
                     "<li class=\"ui-state-default\">" + row["comment"].ToString() + "</li>";
 
@@ -67,6 +79,8 @@ namespace TrabalhoFinal
                 connection.Close();
             }
             catch { }
+
+
 
         }
 
@@ -106,6 +120,44 @@ namespace TrabalhoFinal
             }
             else {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Only authenticated users who bought this film can comment')", true);
+            }
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            String sql = "SELECT CASE WHEN EXISTS(SELECT id, email FROM MoviesBS.dbo.Whishlist WHERE id = '" + Request.QueryString["ID"] + "' and email = '" + User.Identity.Name + "') THEN 'TRUE' ELSE 'FALSE' END AS[Exists] FROM MoviesBS.dbo.Whishlist";
+            SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(table);
+            connection.Open();
+            connection.Close();
+            Debug.WriteLine(table.Rows[0]["Exists"].ToString());
+
+            if (table.Rows[0]["Exists"].ToString() == "FALSE" && User.Identity.IsAuthenticated)
+            {
+                sql = "INSERT INTO dbo.Whishlist (id,email) VALUES (@id,@email)";
+                using (connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False"))
+                using (command = new SqlCommand(sql, connection))
+                {
+                    //a shorter syntax to adding parameters
+                    command.Parameters.Add("@id", SqlDbType.NChar).Value = Request.QueryString["ID"];
+
+                    command.Parameters.Add("@email", SqlDbType.NChar).Value = User.Identity.Name;
+
+                    //make sure you open and close(after executing) the connection
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                Response.Redirect("~/Personal/MyArea");
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR: Not authenticated or already on wishlist')", true);
             }
         }
     }

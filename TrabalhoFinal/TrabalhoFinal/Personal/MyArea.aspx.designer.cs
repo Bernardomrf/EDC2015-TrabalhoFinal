@@ -13,12 +13,30 @@ namespace TrabalhoFinal.Personal {
     public partial class MyArea {
         
         /// <summary>
-        /// news control.
+        /// movie control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl news;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl movie;
+        
+        /// <summary>
+        /// wish control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl wish;
+        
+        /// <summary>
+        /// sortable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sortable;
     }
 }

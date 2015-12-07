@@ -38,11 +38,20 @@
 
             </p>
             <div>
-                    <asp:Button CssClass="button" ID="Button1" runat="server" Text="Purchase" Width="300"/>
+                    <asp:Button CssClass="btn btn-success" ID="Button1" runat="server" Text="Purchase" Width="300"/>
+            </div>
+            <p>
+
+            </p>
+            <div>
+                    <asp:Button CssClass="btn btn-danger" ID="Button3" runat="server" OnClick="Button3_Click" Text="Add to Wishlist" Width="300"/>
             </div>
         </div>
     </div> 
      <hr/>
+    <div runat="server" id="trailer">
+
+    </div>
 
     <div class="container">
         <div class="col-lg-12 col-sm-6 text-left">
