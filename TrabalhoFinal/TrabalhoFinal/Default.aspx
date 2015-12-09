@@ -3,7 +3,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h1>Movies Bookshelf & Store</h1>
+        <h1>
+            <asp:XmlDataSource ID="XmlDataSource1" runat="server" TransformFile="~/App_Data/Movie.xsl"></asp:XmlDataSource>
+            Movies Bookshelf & Store</h1>
         <p class="lead"> Movies B&S is an online platform for buying and review the best movies ever made.</p>
         <p><a href="MoviesList" class="btn btn-primary btn-lg">Movies List &raquo;</a></p>
     </div>

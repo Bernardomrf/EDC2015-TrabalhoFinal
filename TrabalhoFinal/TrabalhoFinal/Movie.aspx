@@ -38,20 +38,37 @@
 
             </p>
             <div>
-                    <asp:Button CssClass="btn btn-success" ID="Button1" runat="server" Text="Purchase" Width="300"/>
+                    <asp:Button CssClass="btn btn-success" ID="Button1" runat="server" Text="Purchase" Width="300" Font-Size="Medium" />
             </div>
             <p>
 
             </p>
             <div>
-                    <asp:Button CssClass="btn btn-danger" ID="Button3" runat="server" OnClick="Button3_Click" Text="Add to Wishlist" Width="300"/>
+                    <asp:Button CssClass="btn btn-danger" ID="Button3" runat="server" OnClick="Button3_Click" Text="Add to Wishlist" Width="300" Font-Size="Medium"/>
+            </div>
+             <p>
+
+             </p>
+            <div style="width:300px;" class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse1" style="font-size:medium; text-align:center;">Featured Video</a>
+                  </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                  <div style="text-align:center" class="panel-body" runat="server" id="trailer"></div>
+                </div>
+              </div>
             </div>
         </div>
     </div> 
-     <hr/>
-    <div runat="server" id="trailer">
+     <p>
 
-    </div>
+      </p>
+     
+    
+    <hr/>
 
     <div class="container">
         <div class="col-lg-12 col-sm-6 text-left">

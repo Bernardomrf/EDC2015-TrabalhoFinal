@@ -18,6 +18,7 @@ namespace TrabalhoFinal
 
             try
             {
+                
                 String sql = "SELECT * FROM dbo.Movies ORDER BY year DESC";
                 SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
                 SqlCommand command = new SqlCommand(sql, connection);
@@ -29,7 +30,6 @@ namespace TrabalhoFinal
                 news.InnerHtml = "<ul>";
                 foreach (DataRow row in table.Rows)
                 {
-                    Debug.WriteLine(row["title"].ToString());
 
                     news.InnerHtml += "" +
 
@@ -59,9 +59,18 @@ namespace TrabalhoFinal
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            String sql;
+            if (DropDownList1.SelectedValue == "All")
+            {
+                sql = "SELECT * FROM dbo.Movies ORDER BY year DESC";
+            }
+            else {
+                sql = "SELECT * FROM dbo.Genres join dbo.Movies on dbo.Genres.id = dbo.Movies.id where genre = '" + DropDownList1.SelectedValue + "' ORDER BY year DES";
+            }
+
             try
             {
-                String sql = "SELECT * FROM dbo.Movies ORDER BY "+ DropDownList1.SelectedValue.ToLower() + " DESC";
+
                 SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
                 SqlCommand command = new SqlCommand(sql, connection);
 
@@ -72,7 +81,6 @@ namespace TrabalhoFinal
                 news.InnerHtml = "<ul>";
                 foreach (DataRow row in table.Rows)
                 {
-                    Debug.WriteLine(row["title"].ToString());
 
                     news.InnerHtml += "" +
 

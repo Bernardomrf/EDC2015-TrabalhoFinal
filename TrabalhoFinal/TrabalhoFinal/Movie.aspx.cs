@@ -17,16 +17,17 @@ namespace TrabalhoFinal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                String jsonString = new WebClient().DownloadString("http://api.myapifilms.com/trailerAddict/taapi?idIMDB=" + Request.QueryString["ID"] + "&width=270&token=244f0fe9-66e4-41f4-8d7c-f4b1dcf8b39d&featured=&count=1&credit=&format=json"); ;
+                JObject hh = JObject.Parse(jsonString);
+                string name = (string)hh["data"]["trailer"][0]["embed"];
 
-            var jsonString  = new WebClient().DownloadString("http://api.myapifilms.com/trailerAddict/taapi?idIMDB=tt3659388&token=244f0fe9-66e4-41f4-8d7c-f4b1dcf8b39d&featured=&count=1&credit=&format=json"); ;
 
-            String[] all = jsonString.Split(new Char[] { ',', ':' });
-            int indeex = Array.IndexOf(all, "\"embed\"");
-            Debug.WriteLine(indeex);
-            foreach (String a in all)
-                Debug.WriteLine(a);
+                trailer.InnerHtml = name;
+            }
+            catch { }
 
-            Debug.WriteLine(all[indeex+1]);
             string url = Request.QueryString["ID"];
             Button1.PostBackUrl= "~/Personal/ConfirmPurchases?ID=" + url;
             string apiLink = "http://www.omdbapi.com/?i=" + url + "&plot=full&r=xml";

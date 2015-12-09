@@ -19,15 +19,27 @@
           <xsl:attribute name="urlPoster">
             <xsl:value-of select="urlPoster"/>
           </xsl:attribute>
-          <xsl:for-each select="movie">
-            <genres>
+            <xsl:for-each select="genres">
               <xsl:attribute name="genre">
-                <xsl:value-of select="genre"/>
+              <xsl:call-template name="join">
+                <xsl:with-param name="list" select="genre" />
+                <xsl:with-param name="separator" select="','" />
+              </xsl:call-template>
               </xsl:attribute>
-            </genres>
-          </xsl:for-each>
+            </xsl:for-each>
         </movie>
       </xsl:for-each>
     </movies>
+  </xsl:template>
+  <xsl:template name="join">
+    <xsl:param name="list" />
+    <xsl:param name="separator"/>
+
+    <xsl:for-each select="$list">
+      <xsl:value-of select="." />
+      <xsl:if test="position() != last()">
+        <xsl:value-of select="$separator" />
+      </xsl:if>
+    </xsl:for-each>
   </xsl:template>
 </xsl:stylesheet>
