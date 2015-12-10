@@ -15,63 +15,62 @@ namespace TrabalhoFinal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            try
-            {
-                
-                String sql = "SELECT * FROM dbo.Movies ORDER BY year DESC";
-                SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                DataTable table = new DataTable();
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                adapter.Fill(table);
-                connection.Open();
-                news.InnerHtml = "<ul>";
-                foreach (DataRow row in table.Rows)
-                {
-
-                    news.InnerHtml += "" +
-
-                    "<li>" +
-                        "<a href = \"/Movie?ID=" + row["id"].ToString() + "\" >" +
-                            "<div class=\"thumb\">" +
-                                "<div class=\"img\" style=\"background-image: url('" + row["poster"].ToString() + "');\"></div>" +
-                            "</div>" +
-                            "<div class=\"info\">" +
-                                "<div class=\"title\">" + row["title"].ToString() + "</div>" +
-                                "<div class=\"infos\">" +
-                                    "<div class=\"year\">" + row["year"].ToString() + "</div>" +
-                                    "<div class=\"imdb\">TMDB: " + row["rating"].ToString() + "</div>" +
-                                "</div>" +
-                            "</div>" +
-                        "</a>" +
-                    "</li>";
-                    
-                }
-                connection.Close();
-            }
-            catch {
-            }
-            news.InnerHtml += "</ul>";
-
+            String sql = "SELECT * FROM dbo.Movies ORDER BY year DESC";
+            renderMovies(sql);
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dropdownChanges();
+        }
+
+        protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dropdownChanges();
+        }
+
+        private void dropdownChanges()
+        {
             String sql;
+
             if (DropDownList1.SelectedValue == "All")
             {
-                sql = "SELECT * FROM dbo.Movies ORDER BY year DESC";
+                sql = "SELECT * FROM dbo.Movies ";
             }
-            else {
-                sql = "SELECT * FROM dbo.Genres join dbo.Movies on dbo.Genres.id = dbo.Movies.id where genre = '" + DropDownList1.SelectedValue + "' ORDER BY year DES";
+            else
+            {
+                sql = "SELECT * FROM dbo.Genres join dbo.Movies on dbo.Genres.id = dbo.Movies.id where genre = '" + DropDownList1.SelectedValue + "' ";
             }
 
+            if (DropDownList2.SelectedValue == "Any")
+            {
+                sql += "ORDER BY [year] DESC";
+            }
+            else if (DropDownList2.SelectedValue == "Higher Rating")
+            {
+                sql += "ORDER BY [rating] DESC";
+            }
+            else if (DropDownList2.SelectedValue == "Lower Rating")
+            {
+                sql += "ORDER BY [rating] ASC";
+            }
+            else if (DropDownList2.SelectedValue == "Newer")
+            {
+                sql += "ORDER BY [year] DESC";
+            }
+            else if (DropDownList2.SelectedValue == "Older")
+            {
+                sql += "ORDER BY [year] ASC";
+            }
+
+            renderMovies(sql);
+        }
+
+        private void renderMovies(String sql)
+        {
             try
             {
-
-                SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+                SqlConnection connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
                 SqlCommand command = new SqlCommand(sql, connection);
 
                 DataTable table = new DataTable();
@@ -81,9 +80,7 @@ namespace TrabalhoFinal
                 news.InnerHtml = "<ul>";
                 foreach (DataRow row in table.Rows)
                 {
-
                     news.InnerHtml += "" +
-
                     "<li>" +
                         "<a href = \"/Movie?ID=" + row["id"].ToString() + "\" >" +
                             "<div class=\"thumb\">" +
@@ -98,7 +95,6 @@ namespace TrabalhoFinal
                             "</div>" +
                         "</a>" +
                     "</li>";
-
                 }
                 connection.Close();
             }
@@ -106,7 +102,6 @@ namespace TrabalhoFinal
             {
             }
             news.InnerHtml += "</ul>";
-
         }
     }
 }

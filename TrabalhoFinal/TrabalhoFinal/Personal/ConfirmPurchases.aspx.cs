@@ -36,7 +36,7 @@ namespace TrabalhoFinal.Personal
         protected void Button2_Click(object sender, EventArgs e)
         {
             String sql = "SELECT CASE WHEN EXISTS(SELECT id, email FROM MoviesBS.dbo.Purchases WHERE id = '"+ Request.QueryString["ID"] + "' and email = '"+ User.Identity.Name + "') THEN 'TRUE' ELSE 'FALSE' END AS[Exists] FROM MoviesBS.dbo.Purchases";
-            SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+            SqlConnection connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
             SqlCommand command = new SqlCommand(sql, connection);
 
             DataTable table = new DataTable();
@@ -49,7 +49,7 @@ namespace TrabalhoFinal.Personal
             if (table.Rows[0]["Exists"].ToString() == "FALSE")
             {
                 sql = "INSERT INTO dbo.Purchases (id,email) VALUES (@id,@email)";
-                using (connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False"))
+                using (connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False"))
                 using (command = new SqlCommand(sql, connection))
                 {
                     //a shorter syntax to adding parameters

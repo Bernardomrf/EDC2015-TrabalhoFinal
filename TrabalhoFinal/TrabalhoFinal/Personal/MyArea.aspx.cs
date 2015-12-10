@@ -17,7 +17,7 @@ namespace TrabalhoFinal.Personal
             try
             {
                 String sql = "SELECT Movies.id, rating, year, poster, title FROM dbo.Purchases, dbo.Movies WHERE email = '" + User.Identity.Name + "' AND Movies.id = Purchases.id";
-                SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+                SqlConnection connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
                 SqlCommand command = new SqlCommand(sql, connection);
 
                 DataTable table = new DataTable();
@@ -51,7 +51,7 @@ namespace TrabalhoFinal.Personal
                 movie.InnerHtml += "</ul>";
 
                 sql = "SELECT Movies.id, rating, year, poster, title FROM dbo.Whishlist, dbo.Movies WHERE email = '" + User.Identity.Name + "' AND Movies.id = Whishlist.id";
-                connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+                connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
                 command = new SqlCommand(sql, connection);
 
                 table = new DataTable();
@@ -85,7 +85,7 @@ namespace TrabalhoFinal.Personal
                 wish.InnerHtml += "</ul>";
 
                 sql = "SELECT id, email, commentDate, comment FROM dbo.Comments WHERE email = '" + User.Identity.Name + "'";
-                connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+                connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
                 command = new SqlCommand(sql, connection);
 
                 table = new DataTable();
@@ -98,7 +98,7 @@ namespace TrabalhoFinal.Personal
                 {
 
                     sql = "SELECT title FROM dbo.Movies WHERE id = '" + row["id"].ToString() + "'";
-                    connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+                    connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
                     command = new SqlCommand(sql, connection);
 
                     DataTable table2 = new DataTable();

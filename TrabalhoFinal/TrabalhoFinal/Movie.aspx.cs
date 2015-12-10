@@ -58,7 +58,7 @@ namespace TrabalhoFinal
             try
             {
                 String sql = "SELECT id, email, commentDate, comment FROM dbo.Comments WHERE id = '" + Request.QueryString["ID"] + "'";
-                SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+                SqlConnection connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
                 SqlCommand command = new SqlCommand(sql, connection);
 
                 DataTable table = new DataTable();
@@ -88,7 +88,7 @@ namespace TrabalhoFinal
         protected void Button2_Click(object sender, EventArgs e)
         {
             String sql = "SELECT CASE WHEN EXISTS(SELECT id, email FROM MoviesBS.dbo.Purchases WHERE id = '" + Request.QueryString["ID"] + "' and email = '" + User.Identity.Name + "') THEN 'TRUE' ELSE 'FALSE' END AS[Exists] FROM MoviesBS.dbo.Purchases";
-            SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+            SqlConnection connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
             SqlCommand command = new SqlCommand(sql, connection);
 
             DataTable table = new DataTable();
@@ -101,7 +101,7 @@ namespace TrabalhoFinal
             if (table.Rows[0]["Exists"].ToString() == "TRUE" && User.Identity.IsAuthenticated)
             {
                 sql = "INSERT INTO dbo.Comments (id,email, comment) VALUES (@id,@email,@comment)";
-                using (connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False"))
+                using (connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False"))
                 using (command = new SqlCommand(sql, connection))
                 {
                     //a shorter syntax to adding parameters
@@ -127,7 +127,7 @@ namespace TrabalhoFinal
         protected void Button3_Click(object sender, EventArgs e)
         {
             String sql = "SELECT CASE WHEN EXISTS(SELECT id, email FROM MoviesBS.dbo.Whishlist WHERE id = '" + Request.QueryString["ID"] + "' and email = '" + User.Identity.Name + "') THEN 'TRUE' ELSE 'FALSE' END AS[Exists] FROM MoviesBS.dbo.Whishlist";
-            SqlConnection connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+            SqlConnection connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
             SqlCommand command = new SqlCommand(sql, connection);
 
             DataTable table = new DataTable();
@@ -140,7 +140,7 @@ namespace TrabalhoFinal
             if (table.Rows[0]["Exists"].ToString() == "FALSE" && User.Identity.IsAuthenticated)
             {
                 sql = "INSERT INTO dbo.Whishlist (id,email) VALUES (@id,@email)";
-                using (connection = new SqlConnection("Data Source=BERNARDOFER78A1\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False"))
+                using (connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False"))
                 using (command = new SqlCommand(sql, connection))
                 {
                     //a shorter syntax to adding parameters

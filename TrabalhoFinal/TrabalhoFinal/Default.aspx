@@ -12,13 +12,14 @@
 
     <div class="row">
         <div class="col-md-4">
-            <h2>Getting started</h2>
+            <h2>Populate Database</h2>
             <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
+                Run scripts to populate Database
             </p>
             <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
+               
+                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+               
             </p>
         </div>
         <div class="col-md-4">
