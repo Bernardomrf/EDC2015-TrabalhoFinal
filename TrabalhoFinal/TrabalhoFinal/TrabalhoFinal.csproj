@@ -204,12 +204,21 @@
     <None Include="Personal\Web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
+    <Content Include="RSS\web.config" />
+    <None Include="RSS\Web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="RSS\Web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Movie.aspx" />
     <Content Include="App_Data\Movie.xsl">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="MoviesList.aspx" />
+    <Content Include="RSS\recent.aspx" />
+    <Content Include="RSS\top.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -434,6 +443,20 @@
       <DependentUpon>MyArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RSS\recent.aspx.cs">
+      <DependentUpon>recent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RSS\recent.aspx.designer.cs">
+      <DependentUpon>recent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RSS\top.aspx.cs">
+      <DependentUpon>top.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RSS\top.aspx.designer.cs">
+      <DependentUpon>top.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
