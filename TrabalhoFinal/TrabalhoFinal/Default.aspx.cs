@@ -132,7 +132,7 @@ namespace TrabalhoFinal
             {
                 recent.InnerHtml += "" +
                     "<li>" +
-                        "<a href = \"/Movie?ID=" + i.Attributes["title"].Value + "\" >" +
+                        "<a href = \"/Movie?ID=" + i.Attributes["id"].Value + "\" >" +
                             "<div class=\"thumb\">" +
                                 "<div class=\"img\" style=\"background-image: url('" + i.Attributes["poster"].Value + "');\"></div>" +
                             "</div>" +
@@ -178,7 +178,7 @@ namespace TrabalhoFinal
             {
                 top.InnerHtml += "" +
                     "<li>" +
-                        "<a href = \"/Movie?ID=" + i.Attributes["title"].Value + "\" >" +
+                        "<a href = \"/Movie?ID=" + i.Attributes["id"].Value + "\" >" +
                             "<div class=\"thumb\">" +
                                 "<div class=\"img\" style=\"background-image: url('" + i.Attributes["poster"].Value + "');\"></div>" +
                             "</div>" +

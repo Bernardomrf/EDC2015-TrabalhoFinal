@@ -18,7 +18,7 @@ namespace TrabalhoFinal.RSS
             SqlConnection sqlConn = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
 
             // SQL query to retrieve data from database
-            string sqlQuery = "select * from dbo.Movies join (select top 10 id, count(*) as nPurchases from dbo.Purchases group by id order by nPurchases desc) as tmp on dbo.Movies.id = tmp.id";
+            string sqlQuery = "select * from dbo.Movies join (select top 14 id, count(*) as nPurchases from dbo.Purchases group by id order by nPurchases desc) as tmp on dbo.Movies.id = tmp.id";
 
             // Create SqlCommand object
             SqlCommand cmd = new SqlCommand(sqlQuery, sqlConn);
