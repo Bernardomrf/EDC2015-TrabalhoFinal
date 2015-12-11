@@ -103,5 +103,11 @@ namespace TrabalhoFinal
             }
             news.InnerHtml += "</ul>";
         }
+
+        protected void input_onClick(object sender, EventArgs e)
+        {
+            String sql = "select * from Movies where UPPER(title) like UPPER('%" + Text1.Text + "%');";
+            renderMovies(sql);
+        }
     }
 }
