@@ -4,9 +4,6 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using TrabalhoFinal.Models;
 
 namespace TrabalhoFinal.Models
 {
@@ -15,7 +12,7 @@ namespace TrabalhoFinal.Models
     {
 
         public DateTime BirthDate { get; set; }
-        public String FullName { get; set; }
+        public string FullName { get; set; }
 
 
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)

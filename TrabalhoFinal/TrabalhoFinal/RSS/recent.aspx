@@ -8,8 +8,9 @@
                     <title>MoviesBS</title>
                     <link>http://www.moviesBS.com</link>
                     <description>
-                        MoviesBS the place to buy your entire movie collection
+                        Movies B&amp;S is an online platform for buying and review the best movies ever made.
                     </description>
+                    <language>en-EN</language>
         </HeaderTemplate>
         <ItemTemplate>
             <item>
