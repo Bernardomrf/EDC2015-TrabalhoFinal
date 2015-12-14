@@ -170,6 +170,8 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Admin\Admin.aspx" />
+    <Content Include="Admin\Area.aspx" />
     <Content Include="App_Data\MoviesList.xsl">
       <SubType>Designer</SubType>
     </Content>
@@ -198,6 +200,13 @@
     <Content Include="Personal\ConfirmPurchases.aspx" />
     <Content Include="Personal\MyArea.aspx" />
     <Content Include="Personal\web.config" />
+    <Content Include="Admin\web.config" />
+    <None Include="Admin\Web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="Admin\Web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
     <None Include="Personal\Web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -371,6 +380,20 @@
     </Compile>
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Area.aspx.cs">
+      <DependentUpon>Area.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Area.aspx.designer.cs">
+      <DependentUpon>Area.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

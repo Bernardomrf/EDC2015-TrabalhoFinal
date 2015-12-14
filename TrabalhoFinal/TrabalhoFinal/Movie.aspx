@@ -8,30 +8,60 @@
     
     <div runat="server" class="row">
         <div class="col-lg-8">
-            <h3>Movie Info</h3>
+            <h3 style="text-decoration: underline;">Movie Info</h3>
             <asp:DetailsView CssClass="table" GridLines="None" ID="DetailsView1" runat="server" DataSourceID="XmlDataSource1" AutoGenerateRows="False" >
                 <Fields>
-                    <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" />
-                    <asp:BoundField DataField="year" HeaderText="Year" SortExpression="year" />
-                    <asp:BoundField DataField="released" HeaderText="Release Date" SortExpression="released" />
-                    <asp:BoundField DataField="runtime" HeaderText="Runtime" SortExpression="runtime" />
-                    <asp:BoundField DataField="genre" HeaderText="Genres" SortExpression="genre" />
-                    <asp:BoundField DataField="director" HeaderText="Director" SortExpression="director" />
-                    <asp:BoundField DataField="writer" HeaderText="Writer" SortExpression="writer" />
-                    <asp:BoundField DataField="actors" HeaderText="Actors" SortExpression="actors" />   
-                    <asp:BoundField DataField="plot" HeaderText="Plot" SortExpression="plot" /> 
-                    <asp:BoundField DataField="language" HeaderText="Language" SortExpression="language" /> 
-                    <asp:BoundField DataField="country" HeaderText="Country" SortExpression="country" /> 
-                    <asp:BoundField DataField="awards" HeaderText="Awards" SortExpression="awards" /> 
-                    <asp:BoundField DataField="metascore" HeaderText="Metascore" SortExpression="metascore" /> 
-                    <asp:BoundField DataField="imdbRating" HeaderText="IMDB Rating" SortExpression="imdbRating" /> 
-                    <asp:BoundField DataField="imdbID" HeaderText="IMDB ID" SortExpression="imdbID" /> 
+                    <asp:BoundField  DataField="title" HeaderText="Title" SortExpression="title" >
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="year" HeaderText="Year" SortExpression="year" >
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="released" HeaderText="Release Date" SortExpression="released" >
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="runtime" HeaderText="Runtime" SortExpression="runtime" >
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="genre" HeaderText="Genres" SortExpression="genre" >
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="director" HeaderText="Director" SortExpression="director" >
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="writer" HeaderText="Writer" SortExpression="writer" >
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="actors" HeaderText="Actors" SortExpression="actors" >   
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="plot" HeaderText="Plot" SortExpression="plot"  >   
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="language" HeaderText="Language" SortExpression="language" >   
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="country" HeaderText="Country" SortExpression="country"  >   
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="awards" HeaderText="Awards" SortExpression="awards"  >   
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="metascore" HeaderText="Metascore" SortExpression="metascore"  >   
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="imdbRating" HeaderText="IMDB Rating" SortExpression="imdbRating"  >   
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="imdbID" HeaderText="IMDB ID" SortExpression="imdbID"  >   
+                    <HeaderStyle Font-Bold="True" ForeColor="#18AE88" Font-Size="Medium" />
+                    </asp:BoundField>
 
                 </Fields>
             </asp:DetailsView>
         </div>
         <div class="col-lg-4">
-            <h3>Poster</h3>
+            <h3 style="text-decoration: underline;">Poster</h3>
             <div id="image" runat="server">
             </div>
             <p>
