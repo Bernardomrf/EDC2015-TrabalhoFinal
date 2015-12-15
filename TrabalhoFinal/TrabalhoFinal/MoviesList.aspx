@@ -8,7 +8,7 @@
         <div class ="center">
             <div class ="row">
                  <div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <asp:DropDownList AppendDataBoundItems="true" CssClass="btn btn-success dropdown-toggle" ID="DropDownList1" AutoPostBack="true" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" DataSourceID="SqlDataSource1" DataTextField="genre" DataValueField="genre">
                         <asp:ListItem>All</asp:ListItem>
                         </asp:DropDownList>
@@ -22,7 +22,7 @@
                             <asp:ListItem>Older</asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                    <div class="col-md-6" style="text-align:right; ">
+                    <div class="col-md-5" style="text-align:right; ">
                         <label style="font-size:35px"><i class="fa fa-search fa-3"></i></label>
                     </div>
                     <div class="col-md-3">

@@ -62,7 +62,33 @@ namespace TrabalhoFinal.Personal
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
+                try
+                {
+                    sql = "SELECT CASE WHEN EXISTS(SELECT id, email FROM MoviesBS.dbo.Purchases WHERE id = '" + Request.QueryString["ID"] + "' and email = '" + User.Identity.Name + "') THEN 'TRUE' ELSE 'FALSE' END AS[Exists] FROM MoviesBS.dbo.Purchases";
+                    connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+                    command = new SqlCommand(sql, connection);
 
+                    table = new DataTable();
+                    adapter = new SqlDataAdapter(command);
+                    adapter.Fill(table);
+                    connection.Open();
+                    connection.Close();
+                    
+                    if (table.Rows[0]["Exists"].ToString() == "TRUE") {
+                        sql = "Delete from MoviesBS.dbo.Whishlist where id = '" + Request.QueryString["ID"] + "' and email = '" + User.Identity.Name + "'";
+                        connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MoviesBS;Integrated Security=True;Pooling=False");
+                        command = new SqlCommand(sql, connection);
+
+                        table = new DataTable();
+                        adapter = new SqlDataAdapter(command);
+                        adapter.Fill(table);
+                        connection.Open();
+                        connection.Close();
+                    }
+
+                   
+                }
+                catch { }
                 Response.Redirect("~/Personal/MyArea");
             }
             else {

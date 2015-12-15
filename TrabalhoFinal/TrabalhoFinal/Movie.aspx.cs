@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -51,8 +52,13 @@ namespace TrabalhoFinal
             XmlDocument xdoc1 = XmlDataSource1.GetXmlDocument();
             XmlNode info = xdoc1.SelectSingleNode("/root/movie");
             DetailsView1.DataBind();
+            String pattern = "_V1.*";
+            String replacement = "jpg";
+            Regex rgx;
+            rgx = new Regex(pattern);
+            String poster = rgx.Replace(info.Attributes["poster"].Value, replacement);
 
-            image.InnerHtml = "<img border=\"0\" alt=\"" + info.Attributes["title"].Value + "\" src=\"" + info.Attributes["poster"].Value + "\">";
+            image.InnerHtml = "<img width=\"300px\" border=\"0\" alt=\"" + info.Attributes["title"].Value + "\" src=\"" + poster + "\">";
             movieName.InnerHtml = "<i class=\"fa fa-video-camera\"></i>  "+ info.Attributes["title"].Value;
 
             try
